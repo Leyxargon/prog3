@@ -24,18 +24,120 @@ import org.bson.Document;
  */
 public class Tupla {
     
-
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://admin:admin@preventechdb-swyud.mongodb.net/test?retryWrites=true&w=majority")) {};
         MongoDatabase db = mongoClient.getDatabase("maps");
         MongoCollection collection = db.getCollection("prog3");
         List<Document> foundDocument = (List<Document>) collection.find().into(new ArrayList<>());
         Document nuovaTupla = new Document();
-    public Tupla(String nome, double pos1, double pos2, String indirizzo) {
+    
+        
+        String nome;
+        double lat;
+        double lon;
+        String indirizzo;      
+
+    public Tupla() {
+    }
+
+    public Tupla(String nome, double lat, double lon, String indirizzo) {
+        this.nome = nome;
+        this.lat = lat;
+        this.lon = lon;
+        this.indirizzo = indirizzo;
+    }
+
+
+        
+        public void insertTupla(String nome, double lat, double lon, String indirizzo) {
         nuovaTupla.append("name", nome);
-        nuovaTupla.append("pos",Arrays.asList(pos1,pos2));
+        nuovaTupla.append("pos",Arrays.asList(lat,lon));
         nuovaTupla.append("str",indirizzo);
         collection.insertOne(nuovaTupla);
+        System.out.println("tupla inserita");
+            System.out.println();
+        }
+    
+    public void stamp(Tupla x){
+        System.out.println(x.nome + " "+ x.lat +" "+ x.lon +" "+ x.indirizzo);
     }
     
     
+    
+    public MongoClient getMongoClient() {
+        return mongoClient;
+    }
+
+    @Override
+    public String toString() {
+        return "Tupla{" + "nome=" + nome + ", lat=" + lat + ", lon=" + lon + ", indirizzo=" + indirizzo + '}';
+    }
+
+    public void setMongoClient(MongoClient mongoClient) {
+        this.mongoClient = mongoClient;
+    }
+
+    public MongoDatabase getDb() {
+        return db;
+    }
+
+    public void setDb(MongoDatabase db) {
+        this.db = db;
+    }
+
+    public MongoCollection getCollection() {
+        return collection;
+    }
+
+    public void setCollection(MongoCollection collection) {
+        this.collection = collection;
+    }
+
+    public List<Document> getFoundDocument() {
+        return foundDocument;
+    }
+
+    public void setFoundDocument(List<Document> foundDocument) {
+        this.foundDocument = foundDocument;
+    }
+
+    public Document getNuovaTupla() {
+        return nuovaTupla;
+    }
+
+    public void setNuovaTupla(Document nuovaTupla) {
+        this.nuovaTupla = nuovaTupla;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+        
 }

@@ -20,12 +20,11 @@ public class Preventech {
     public static void main(String[] args) {
 
         
-        Tupla x = new Tupla("Ciao",5.10,10.2,"Via pepp");
+        Tupla x = new Tupla();
         
+        x.insertTupla("nome", 0, 0, "indirizzo");
         
-        System.out.println("Doc inserito");     
-        
-        
+        x.toString();
 
     }
     
