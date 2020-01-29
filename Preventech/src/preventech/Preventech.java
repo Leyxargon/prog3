@@ -7,17 +7,6 @@ package preventech;
 
 
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.geojson.Polygon;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import net.java.html.leaflet.*;
-import org.bson.Document;
 
 /**
  *
@@ -37,14 +26,7 @@ public class Preventech {
         System.out.println("Doc inserito");     
         
         
-        /*for (Document o : foundDocument) {
-            List<Document> list = (List<Document>) o.get("pos");
-            String list2 = (String) o.get("str");
-            System.out.println(list2);
-            System.out.println(list.get(0));
-            System.out.println(list.get(1));
-        }*/
-        
+
     }
     
 }
