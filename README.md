@@ -1,2 +1,2 @@
-# prog3
+# Progetto Programmazione III
 Progetto in Java di Programmazione 3
