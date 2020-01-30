@@ -1,2 +1,2 @@
 # Progetto Programmazione III
-Progetto in Java di Programmazione 3
+Progetto per l'esame di Programmazione III, Università degli Studi di Napoli "Parthenope"
