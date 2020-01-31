@@ -5,15 +5,20 @@
  */
 package preventechfx;
 
+import java.io.IOException;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -34,6 +39,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField latitudine;
     
+    @FXML
+    Stage stage;
+    Parent root;
+    @FXML
+    private Button bt1, bt2;
+    
   /* private String nome_farmacia = nome.getText();
    private String via_farmacia = via.getText();
    private String lat = latitudine.getText();
@@ -45,10 +56,22 @@ public class FXMLDocumentController implements Initializable {
     
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        if(event.getSource()==bt1){
         x.insertTupla(nome.getText(), Double.parseDouble(latitudine.getText()), Double.parseDouble(longitudine.getText()), via.getText());
         
+        }
+        else{
+        stage = (Stage) bt2.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("FXMLMappa.fxml"));
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show(); 
     }
+    
+
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
