@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -38,6 +39,7 @@ public class FXMLDocumentController implements Initializable {
    private String lat = latitudine.getText();
    private String longitude = longitudine.getText();
    */
+
    
   
     
@@ -52,6 +54,14 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void pulisciTutto(MouseEvent event) {
+        nome.clear();
+        via.clear();
+        longitudine.clear();
+        latitudine.clear();
+    }
     
     
 }

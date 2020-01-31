@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="712.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="preventechfx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preventechfx.FXMLDocumentController">
     <children>
-        <Button fx:id="button" layoutX="602.0" layoutY="300.0" onAction="#handleButtonAction" text="INVIA DATI" />
+        <Button fx:id="button" layoutX="602.0" layoutY="300.0" onAction="#handleButtonAction" onMouseClicked="#pulisciTutto" text="INVIA DATI" />
       <Label layoutX="60.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="NOME">
          <font>
             <Font name="System Bold" size="16.0" />
