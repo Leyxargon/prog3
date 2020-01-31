@@ -59,7 +59,8 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonAction(ActionEvent event) throws IOException {
         if(event.getSource()==bt1){
         x.insertTupla(nome.getText(), Double.parseDouble(latitudine.getText()), Double.parseDouble(longitudine.getText()), via.getText());
-        
+        stage = (Stage) bt1.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("FXMLSuccess.fxml"));
         }
         else{
         stage = (Stage) bt2.getScene().getWindow();

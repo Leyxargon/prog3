@@ -28,7 +28,7 @@ public class FXMLMappaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         WebEngine engine = webView.getEngine();
-        engine.load("http://localhost:8081/Preventech/MapServlet");
+        engine.load("http://localhost:8080/Preventech/MapServlet");
     }    
     
 }
