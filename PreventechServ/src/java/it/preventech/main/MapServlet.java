@@ -49,7 +49,7 @@ public class MapServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Test</title> ");
+            out.println("<title>Preventech</title> ");
             out.println("<link rel=\"stylesheet\" href=\"leaflet/leaflet.css\" />");
             out.println("<script src=\"leaflet/leaflet.js\"></script>");
             out.println("</head>");
