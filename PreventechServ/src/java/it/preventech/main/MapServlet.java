@@ -64,7 +64,7 @@ public class MapServlet extends HttpServlet {
                 String list2 = (String) o.get("str");
                 //System.out.println(list.get(0) + " " + list.get(1) );
                 //System.out.println(list2);
-                out.println("L.marker(["+ list.get(0)+","+list.get(1)+ "]).addTo(map).bindPopup(\"{{ "+list2+ "|safe }}\")");
+                out.println("L.marker(["+ list.get(0)+","+list.get(1)+ "]).addTo(map).bindPopup(\" "+list2+ " \")");
             }        
             out.println("var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');\n"
                     + " map.addLayer(layer);\n"
