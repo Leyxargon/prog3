@@ -47,8 +47,8 @@ public class Tupla {
         
         public void insertTupla(String nome, double lat, double lon, String indirizzo) {
         nuovaTupla.append("pos",Arrays.asList(lat,lon));
-        nuovaTupla.append("name", nome);
-        nuovaTupla.append("str",indirizzo);
+        nuovaTupla.append("name", indirizzo);
+        nuovaTupla.append("str",nome);
         collection.insertOne(nuovaTupla);
         System.out.println("tupla inserita");
         }
@@ -113,8 +113,14 @@ public class Tupla {
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
-
-
-
-        
+    
+    public List<String> castLista(List<Document> foundDocument) {
+        List<String> cast = new ArrayList<>();
+        for (Document o : foundDocument) {
+            String list2 = (String) o.get("str");
+            cast.add(list2);
+        }
+        return cast;
+    }
+    
 }

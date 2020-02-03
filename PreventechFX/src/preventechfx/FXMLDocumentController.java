@@ -29,8 +29,6 @@ public class FXMLDocumentController implements Initializable {
     
     private Label label;
     @FXML
-    private Button button;
-    @FXML
     private TextField nome;
     @FXML
     private TextField via;
@@ -39,7 +37,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField latitudine;
     
-    @FXML
     Stage stage;
     Parent root;
     @FXML
@@ -50,6 +47,8 @@ public class FXMLDocumentController implements Initializable {
    private String lat = latitudine.getText();
    private String longitude = longitudine.getText();
    */
+    @FXML
+    private Button listView;
 
    
   
@@ -57,15 +56,15 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        if(event.getSource()==bt1){
-        x.insertTupla(nome.getText(), Double.parseDouble(latitudine.getText()), Double.parseDouble(longitudine.getText()), via.getText());
-        stage = (Stage) bt1.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("FXMLSuccess.fxml"));
+        if (event.getSource() == bt1) {
+            x.insertTupla(nome.getText(), Double.parseDouble(latitudine.getText()), Double.parseDouble(longitudine.getText()), via.getText());
+            stage = (Stage) bt1.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("FXMLSuccess.fxml"));
+        } else if (event.getSource() == bt2) {
+            stage = (Stage) bt2.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("FXMLMappa.fxml"));
         }
-        else{
-        stage = (Stage) bt2.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("FXMLMappa.fxml"));
-        }
+            
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show(); 
@@ -86,6 +85,17 @@ public class FXMLDocumentController implements Initializable {
         longitudine.clear();
         latitudine.clear();
     }
+
+    @FXML
+    private void viewList(MouseEvent event) throws IOException {
+
+        stage = (Stage) listView.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("FXMLList.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     
     
 }

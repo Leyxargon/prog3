@@ -33,6 +33,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="bt2" layoutX="502.0" layoutY="300.0" onAction="#handleButtonAction"  text="APRI MAPPA" />
+      <Button fx:id="bt2" layoutX="502.0" layoutY="300.0" onAction="#handleButtonAction" text="APRI MAPPA" />
+      <Button fx:id="listView" layoutX="378.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#viewList" text="VISUALIZZA LISTA" />
     </children>
 </AnchorPane>
