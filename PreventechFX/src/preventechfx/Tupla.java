@@ -5,7 +5,10 @@
  */
 package preventechfx;
 
-
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -13,27 +16,31 @@ import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import static java.util.Locale.filter;
+import java.util.function.Consumer;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 /**
  *
  * @author raffa
  */
 public class Tupla {
-    
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://admin:admin@preventechdb-swyud.mongodb.net/test?retryWrites=true&w=majority")) {};
-        MongoDatabase db = mongoClient.getDatabase("maps");
-        MongoCollection collection = db.getCollection("prog3");
-        List<Document> foundDocument = (List<Document>) collection.find().into(new ArrayList<>());
-        Document nuovaTupla = new Document();
-    
-        
-        String nome;
-        double lat;
-        double lon;
-        String indirizzo;      
-        double open;
-        double close;
+
+    MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://admin:admin@preventechdb-swyud.mongodb.net/test?retryWrites=true&w=majority")) {
+    };
+    MongoDatabase db = mongoClient.getDatabase("maps");
+    DB database = mongoClient.getDB("maps");
+    MongoCollection collection = db.getCollection("prog3");
+    //MongoCollection<Document> orarioCollection = db.getCollection("prog3");
+    DBCollection orarioCollection = database.getCollection("prog3");
+    List<Document> foundDocument = (List<Document>) collection.find().into(new ArrayList<>());
+    Document nuovaTupla = new Document();
+
+    String nome;
+    double lat;
+    double lon;
+    String indirizzo;
 
     public Tupla() {
     }
@@ -45,31 +52,26 @@ public class Tupla {
         this.indirizzo = indirizzo;
     }
 
-
-        
-        public void insertTupla(String nome, double lat, double lon, String indirizzo,double open, double close) {
-        nuovaTupla.append("pos",Arrays.asList(lat,lon));
+    public void insertTupla(String nome, double lat, double lon, String indirizzo, double open, double close) {
+        nuovaTupla.append("pos", Arrays.asList(lat, lon));
         nuovaTupla.append("name", indirizzo);
-        nuovaTupla.append("str","<strong>"+nome+"</strong>"+"<br>"+indirizzo);
+        nuovaTupla.append("str", "<strong>" + nome + "</strong>" + "<br>" + indirizzo);
         nuovaTupla.append("open", open);
         nuovaTupla.append("close", close);
         collection.insertOne(nuovaTupla);
         System.out.println("tupla inserita");
-        }
-        
-        public void removeTupla(String nome, double lat, double lon, String indirizzo,double open, double close) {
-        nuovaTupla.append("pos",Arrays.asList(lat,lon));
+    }
+
+    public void removeTupla(String nome, double lat, double lon, String indirizzo, double open, double close) {
+        nuovaTupla.append("pos", Arrays.asList(lat, lon));
         nuovaTupla.append("name", indirizzo);
-        nuovaTupla.append("str","<strong>"+nome+"</strong>"+"<br>"+indirizzo);
+        nuovaTupla.append("str", "<strong>" + nome + "</strong>" + "<br>" + indirizzo);
         nuovaTupla.append("open", open);
         nuovaTupla.append("close", close);
         collection.deleteOne(nuovaTupla);
-        System.out.println("tupla rimossa");
-        }
+        System.out.println("tupla inserita");
+    }
 
-    
-    
-    
     public MongoClient getMongoClient() {
         return mongoClient;
     }
@@ -125,17 +127,34 @@ public class Tupla {
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
-    
+
     public List<String> castLista(List<Document> foundDocument) {
         List<String> cast = new ArrayList<>();
+        Director x = new Director();
         for (Document o : foundDocument) {
             String list2 = (String) o.get("str");
-            list2=list2.replace("<strong>", "");
-            list2=list2.replace("</strong>", "");
-            list2=list2.replace("<br>", " ");
+            list2 = list2.replace("<strong>", "");
+            list2 = list2.replace("</strong>", "");
+            list2 = list2.replace("<br>", " ");
+            list2 = list2 + " " + x.controlState((String) o.get("str"), this);
             cast.add(list2);
         }
         return cast;
     }
-    
+
+    public Double trovaOrario(String nome_negozio) {
+        BasicDBObject searchQuery = new BasicDBObject();
+        searchQuery.put("str", nome_negozio);
+        DBCursor cursor = orarioCollection.find(searchQuery);
+
+        return (Double) cursor.next().get("open");
+    }
+
+    public Double orarioChiusura(String nome_negozio) {
+        BasicDBObject searchQuery = new BasicDBObject();
+        searchQuery.put("str", nome_negozio);
+        DBCursor cursor = orarioCollection.find(searchQuery);
+
+        return (Double) cursor.next().get("close");
+    }
 }
