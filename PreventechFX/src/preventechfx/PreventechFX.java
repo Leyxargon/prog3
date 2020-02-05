@@ -22,7 +22,7 @@ public class PreventechFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
        //Parent root = FXMLLoader.load(getClass().getResource("FXMLMappa.fxml"));
-       Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("FXMLFirst.fxml"));
         
         Scene scene = new Scene(root);
         

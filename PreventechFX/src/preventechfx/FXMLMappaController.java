@@ -40,7 +40,7 @@ public class FXMLMappaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         WebEngine engine = map.getEngine();
-        engine.load("http://localhost:8080/Preventech/MapServlet");
+        engine.load("http://localhost:8180/Preventech/MapServlet");
     }    
 
     @FXML

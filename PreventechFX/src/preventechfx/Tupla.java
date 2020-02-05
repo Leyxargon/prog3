@@ -32,6 +32,8 @@ public class Tupla {
         double lat;
         double lon;
         String indirizzo;      
+        double open;
+        double close;
 
     public Tupla() {
     }
@@ -45,12 +47,24 @@ public class Tupla {
 
 
         
-        public void insertTupla(String nome, double lat, double lon, String indirizzo) {
+        public void insertTupla(String nome, double lat, double lon, String indirizzo,double open, double close) {
         nuovaTupla.append("pos",Arrays.asList(lat,lon));
         nuovaTupla.append("name", indirizzo);
-        nuovaTupla.append("str",nome);
+        nuovaTupla.append("str","<strong>"+nome+"</strong>"+"<br>"+indirizzo);
+        nuovaTupla.append("open", open);
+        nuovaTupla.append("close", close);
         collection.insertOne(nuovaTupla);
         System.out.println("tupla inserita");
+        }
+        
+        public void removeTupla(String nome, double lat, double lon, String indirizzo,double open, double close) {
+        nuovaTupla.append("pos",Arrays.asList(lat,lon));
+        nuovaTupla.append("name", indirizzo);
+        nuovaTupla.append("str","<strong>"+nome+"</strong>"+"<br>"+indirizzo);
+        nuovaTupla.append("open", open);
+        nuovaTupla.append("close", close);
+        collection.deleteOne(nuovaTupla);
+        System.out.println("tupla rimossa");
         }
 
     
@@ -104,8 +118,6 @@ public class Tupla {
         this.nome = nome;
     }
 
-
-
     public String getIndirizzo() {
         return indirizzo;
     }
@@ -118,6 +130,9 @@ public class Tupla {
         List<String> cast = new ArrayList<>();
         for (Document o : foundDocument) {
             String list2 = (String) o.get("str");
+            list2=list2.replace("<strong>", "");
+            list2=list2.replace("</strong>", "");
+            list2=list2.replace("<br>", " ");
             cast.add(list2);
         }
         return cast;
