@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -66,6 +67,7 @@ public class FXMLDocumentController implements Initializable {
         x.insertTupla(nome.getText(), Double.parseDouble(latitudine.getText()), Double.parseDouble(longitudine.getText()), via.getText(),Double.parseDouble(apertura.getText()),Double.parseDouble(chiusura.getText()));
         //root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         //sub.setRoot(root);
+	sub.setCursor(Cursor.HAND);
     }
 
 

@@ -8,6 +8,7 @@ package preventechfx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import static javafx.scene.Cursor.DEFAULT;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -30,6 +31,7 @@ public class PreventechFX extends Application {
         stage.getIcons().add(new Image("img/favicon.png"));
         stage.setTitle("Preventech");
         stage.show();
+        scene.setCursor(DEFAULT);
     }
 
     /**

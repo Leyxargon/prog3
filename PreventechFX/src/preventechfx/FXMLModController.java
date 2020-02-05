@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
@@ -46,12 +47,14 @@ public class FXMLModController implements Initializable {
     private void Insert(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         sub.setRoot(root);
+	sub.setCursor(Cursor.HAND);
     }
 
     @FXML
     private void Delete(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("FXMLDocumentDel.fxml"));
         sub.setRoot(root);
+	sub.setCursor(Cursor.HAND);
     }
    
    /* public void Success() throws IOException{
