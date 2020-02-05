@@ -6,9 +6,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preventechfx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preventechfx.FXMLDocumentDelController">
     <children>
-        <Button fx:id="bt1" layoutX="553.0" layoutY="296.0" onAction="#handleButtonAction" onMouseClicked="#pulisciTutto" prefHeight="39.0" prefWidth="99.0" text="INVIA DATI" />
+        <Button fx:id="del" layoutX="553.0" layoutY="296.0" onAction="#delAction" onMouseClicked="#pulisciTutto" style="-fx-background-color: red;" text="ELIMINA" textFill="#fffbfb">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
       <Label layoutX="60.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="NOME">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -35,12 +38,12 @@
       </Label>
       <TextField fx:id="chiusura" layoutX="416.0" layoutY="239.0" prefHeight="25.0" prefWidth="93.0" />
       <TextField fx:id="apertura" layoutX="416.0" layoutY="197.0" prefHeight="25.0" prefWidth="93.0" />
-      <Label layoutX="323.0" layoutY="239.0" text="CHIUSURA">
+      <Label layoutX="324.0" layoutY="239.0" text="CHIUSURA">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="322.0" layoutY="197.0" text="APERTURA">
+      <Label layoutX="323.0" layoutY="195.0" text="APERTURA">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
