@@ -16,9 +16,9 @@ import com.mongodb.client.MongoDatabase;
  */
 public class Database {
     private static Database instance = null;
-    private static MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://admin:admin@preventechdb-swyud.mongodb.net/test?retryWrites=true&w=majority"));
-    private static MongoDatabase db = mongoClient.getDatabase("maps");
-    private static MongoCollection collection = db.getCollection("prog3");
+    final private static MongoClient MONGOCLIENT = new MongoClient(new MongoClientURI("mongodb+srv://admin:admin@preventechdb-swyud.mongodb.net/test?retryWrites=true&w=majority"));
+    final private static MongoDatabase DB = MONGOCLIENT.getDatabase("maps");
+    final private static MongoCollection COLLECTION = DB.getCollection("prog3");
 
     private Database() {
         System.out.println("Connessione al database.");
@@ -31,15 +31,15 @@ public class Database {
     }
 
     public static MongoClient getMongoClient() {
-        return mongoClient;
+        return MONGOCLIENT;
     }
 
     public static MongoDatabase getDb() {
-        return db;
+        return DB;
     }
 
     public static MongoCollection getCollection() {
-        return collection;
+        return COLLECTION;
     }
     
 }
