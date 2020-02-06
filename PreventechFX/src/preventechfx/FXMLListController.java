@@ -43,7 +43,7 @@ public class FXMLListController implements Initializable {
         private void loadData(){
         list.removeAll(list);
         Tupla lista = new Tupla();
-        list.addAll(lista.castLista(lista.getFoundDocument()));
+        list.addAll(lista.castLista());
         listaNegozi.getItems().addAll(list);
         }    
 }
