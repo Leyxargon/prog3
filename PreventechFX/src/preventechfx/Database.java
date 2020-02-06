@@ -19,11 +19,9 @@ import org.bson.Document;
  */
 public class Database {
     private static Database instance = null;
-    private static MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://admin:admin@preventechdb-swyud.mongodb.net/test?retryWrites=true&w=majority")) {
-    };
+    private static MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://admin:admin@preventechdb-swyud.mongodb.net/test?retryWrites=true&w=majority"));
     private static MongoDatabase db = mongoClient.getDatabase("maps");
     private static MongoCollection collection = db.getCollection("prog3");
-    private static List<Document> foundDocument = (List<Document>) collection.find().into(new ArrayList<>());
 
     private Database() {
         System.out.println("Connessione al database.");
@@ -45,10 +43,6 @@ public class Database {
 
     public static MongoCollection getCollection() {
         return collection;
-    }
-
-    public static List<Document> getFoundDocument() {
-        return foundDocument;
     }
     
 }

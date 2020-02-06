@@ -25,6 +25,7 @@ public class Tupla {
     private static double lat;
     private static double lon;
     private static String indirizzo;
+    private List<Document> foundDocument = (List<Document>) database.getCollection().find().into(new ArrayList<>());
 
     public Tupla() {
     }
@@ -60,7 +61,7 @@ public class Tupla {
     public List<String> castLista() {
         List<String> cast = new ArrayList<>();
         Director x = new Director();
-        for (Document o : database.getFoundDocument()) {
+        for (Document o : foundDocument) {
             String list2 = (String) o.get("str");
             list2 = list2.replace("<strong>", "");
             list2 = list2.replace("</strong>", "");
