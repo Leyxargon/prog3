@@ -32,6 +32,9 @@ public class Tuple {
         this.chiusura = chiusura;
     }
 
+    public Tuple() {
+    }
+
     public String getNome() {
         return nome;
     }

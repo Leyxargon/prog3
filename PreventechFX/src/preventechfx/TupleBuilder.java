@@ -25,7 +25,7 @@ public class TupleBuilder implements Builder {
     
     @Override
     public void setNome(Document document) {
-        this.nome = (String) document.get("Name");
+        this.nome = (String) document.get("name");
     }
 
     @Override

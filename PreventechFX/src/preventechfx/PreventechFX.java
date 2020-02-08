@@ -46,9 +46,13 @@ public class PreventechFX extends Application {
         Director director = new Director();
         TupleBuilder builder = new TupleBuilder();
         List<Document> document = (List<Document>) Database.getCollection().find().into(new ArrayList<>());
-        director.constructFarmaciaTuple(builder, document.get(0));
-        Tuple tuple = builder.getResult();
-        System.out.println(document);
+        TupleCollection tuplec = new TupleCollection();
+        for (Document d : document) {
+            director.constructFarmaciaTuple(builder, d);
+            tuplec.add(builder.getResult());
+        }
+        for (Iterator iter = tuplec.getIterator(); iter.hasNext();)
+            System.out.println(iter.next());
         launch(args);
         
     }
