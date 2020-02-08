@@ -6,6 +6,8 @@
 package preventechfx;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import static javafx.scene.Cursor.DEFAULT;
@@ -13,6 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+
+import org.bson.Document;
 
 /**
  *
@@ -38,7 +43,14 @@ public class PreventechFX extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Director director = new Director();
+        TupleBuilder builder = new TupleBuilder();
+        List<Document> document = (List<Document>) Database.getCollection().find().into(new ArrayList<>());
+        director.constructFarmaciaTuple(builder, document.get(0));
+        Tuple tuple = builder.getResult();
+        System.out.println(document);
         launch(args);
+        
     }
     
 }

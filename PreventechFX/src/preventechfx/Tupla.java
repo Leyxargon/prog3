@@ -19,15 +19,19 @@ import org.bson.Document;
  */
 public class Tupla {
 
-    final private Database database = Database.getInstance();
     private static Document nuovaTupla = new Document();
     private static String nome;
     private static double lat;
     private static double lon;
     private static String indirizzo;
-    private List<Document> foundDocument = (List<Document>) database.getCollection().find().into(new ArrayList<>());
+    private List<Document> foundDocument = (List<Document>) Database.getCollection().find().into(new ArrayList<>());
 
     public Tupla() {
+        List<Document> pos = (List<Document>) foundDocument.get(0).get("pos");
+        lat = (double) (Object) pos.get(0);
+        lon = (double) (Object) pos.get(1);
+        System.out.println(lat);
+        System.out.println(lon);
     }
 
     public Tupla(String nome, double lat, double lon, String indirizzo) {
@@ -35,15 +39,15 @@ public class Tupla {
         this.lat = lat;
         this.lon = lon;
         this.indirizzo = indirizzo;
-    }
-
+    }   
+    
     public void insertTupla(String nome, double lat, double lon, String indirizzo, double open, double close) {
         nuovaTupla.append("pos", Arrays.asList(lat, lon));
         nuovaTupla.append("name", indirizzo);
         nuovaTupla.append("str", "<strong>" + nome + "</strong>" + "<br>" + indirizzo);
         nuovaTupla.append("open", open);
         nuovaTupla.append("close", close);
-        database.getCollection().insertOne(nuovaTupla);
+        Database.getCollection().insertOne(nuovaTupla);
         System.out.println("tupla inserita");
     }
 
@@ -53,14 +57,14 @@ public class Tupla {
         nuovaTupla.append("str", "<strong>" + nome + "</strong>" + "<br>" + indirizzo);
         nuovaTupla.append("open", open);
         nuovaTupla.append("close", close);
-        database.getCollection().deleteOne(nuovaTupla);
+        Database.getCollection().deleteOne(nuovaTupla);
         System.out.println("tupla inserita");
     }
 
 
     public List<String> castLista() {
         List<String> cast = new ArrayList<>();
-        Director x = new Director();
+        Context x = new Context();
         for (Document o : foundDocument) {
             String list2 = (String) o.get("str");
             list2 = list2.replace("<strong>", "");
@@ -75,7 +79,7 @@ public class Tupla {
     public Double trovaOrario(String nome_negozio) {
         Document searchQuery = new Document();
         searchQuery.put("str", nome_negozio);
-        MongoCollection<Document> collection = database.getCollection();
+        MongoCollection<Document> collection = Database.getCollection();
         FindIterable<Document> findIterable = collection.find(searchQuery);
         findIterable.limit(1);
         MongoCursor<Document> cursor = findIterable.iterator();
@@ -86,11 +90,12 @@ public class Tupla {
     public Double orarioChiusura(String nome_negozio) {
         Document searchQuery = new Document();
         searchQuery.put("str", nome_negozio);
-        MongoCollection<Document> collection = database.getCollection();
+        MongoCollection<Document> collection = Database.getCollection();
         FindIterable<Document> findIterable = collection.find(searchQuery);
         findIterable.limit(1);
         MongoCursor<Document> cursor = findIterable.iterator();
 
         return (Double) cursor.next().get("close");
     }
+    
 }
