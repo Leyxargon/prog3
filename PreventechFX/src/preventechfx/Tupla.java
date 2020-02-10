@@ -5,6 +5,7 @@
  */
 package preventechfx;
 
+import preventechfx.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -12,13 +13,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.bson.Document;
+import preventechfx.singleton.Database;
+import preventechfx.state.Context;
 
 /**
  *
  * @author raffa
  */
 public class Tupla {
-
     private static Document nuovaTupla = new Document();
     private static String nome;
     private static double lat;
