@@ -22,7 +22,7 @@ public class TupleCollection implements Aggregate {
     }
     
     public List<Tuple> getCollection() {
-        return tuples;
+        return this.tuples;
     }
     
     private class TupleIterator implements Iterator {

@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -24,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,6 +31,10 @@ import org.bson.Document;
 import preventechfx.builder.*;
 import preventechfx.command.*;
 import preventechfx.iterator.TupleCollection;
+import preventechfx.memento.Action;
+import preventechfx.memento.TupleCollCaretaker;
+import preventechfx.memento.TupleCollMemento;
+import preventechfx.memento.TupleCollOriginator;
 import preventechfx.singleton.*;
 
 /**
@@ -39,7 +43,9 @@ import preventechfx.singleton.*;
  * @author mitic
  */
 public class FXMLListController implements Initializable {
-    
+    TupleCollOriginator tupleCollOriginator;
+    TupleCollMemento tupleCollMemento;
+    TupleCollCaretaker tupleCollCaretaker;
     Stage stage;
     Parent root;
     SubScene sub;
@@ -64,11 +70,13 @@ public class FXMLListController implements Initializable {
     @FXML
     private TableColumn<Tuple, Double> tChiusura;
     @FXML
-    private TextField tex;
-    @FXML
     private Button addButton;
     @FXML
     private Button delButton;
+    @FXML
+    private Button viewMap;
+    @FXML
+    private Button undoButton;
 
     /**
      * Initializes the controller class.
@@ -86,10 +94,15 @@ public class FXMLListController implements Initializable {
         tLon.setCellValueFactory(new PropertyValueFactory<>("lon"));
         tApertura.setCellValueFactory(new PropertyValueFactory<>("apertura"));
         tChiusura.setCellValueFactory(new PropertyValueFactory<>("chiusura"));
-        table.setItems(Prova());
+        tupleCollOriginator = new TupleCollOriginator(loadDB());
+        tupleCollMemento = tupleCollOriginator.saveToMemento();
+        tupleCollCaretaker = new TupleCollCaretaker();
+        tupleCollCaretaker.addMemento(tupleCollMemento);
+        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        undoButton.setDisable(true);
     }
     
-    public ObservableList<Tuple> Prova(){
+    public TupleCollection loadDB() {
         Director director = new Director();
         TupleBuilder builder = new TupleBuilder();
         List<Document> document = (List<Document>) Database.getCollection().find().into(new ArrayList<>());
@@ -100,39 +113,23 @@ public class FXMLListController implements Initializable {
             tuples.add(builder.getResult());
         }
         
-        return FXCollections.observableList(tuples.getCollection());
-    }
-
-/*
-    @FXML
-    private void deleteAction(MouseEvent event) {
-        //table.getSelectionModel().getSelectedItem().getNome();
-        System.out.println(table.getSelectionModel().getSelectedItem().getNome());
-
-    }*/
-
-    @FXML
-    private void changeText(MouseEvent event) {
-        tex.setText(table.getSelectionModel().getSelectedItem().getNome());
+        return tuples;
     }
     
-    /*
-    @FXML
-    private void viewMap(MouseEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLMappa.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
+    public ObservableList<Tuple> generateObservableList(TupleCollection tuples){
+        return FXCollections.observableList(tuples.getCollection());
     }
-    */
     
     @FXML
     private void aggiungiSegnaposto(MouseEvent event) throws IOException {
         new InsertTuplaCommand().execute();
-        table.setItems(Prova());
+        tupleCollOriginator.setCollection(loadDB());
+        tupleCollOriginator.setLastAction(Action.ADD);
+        tupleCollMemento = tupleCollOriginator.saveToMemento();
+        tupleCollCaretaker.addMemento(tupleCollMemento);
+        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        if (undoButton.isDisabled())
+            undoButton.setDisable(false);
     }
     
     @FXML
@@ -150,6 +147,34 @@ public class FXMLListController implements Initializable {
         double chiusura = table.getSelectionModel().getSelectedItem().getChiusura();
         director.constructTupleFromData(builder, nome, lat, lon, via, cap, citta, prov, apertura, chiusura);
         new RemoveTuplaCommand().execute(builder.getResult());
-        table.setItems(Prova());
+        tupleCollOriginator.setCollection(loadDB());
+        tupleCollOriginator.setLastAction(Action.DEL);
+        tupleCollMemento = tupleCollOriginator.saveToMemento();
+        tupleCollCaretaker.addMemento(tupleCollMemento);
+        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        if (undoButton.isDisabled())
+            undoButton.setDisable(false);
+    }
+    
+    @FXML
+    private void annullaOperazione(MouseEvent event) throws IOException {
+        new UndoCommand().execute(tupleCollOriginator, tupleCollMemento, tupleCollCaretaker);
+        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        if (tupleCollCaretaker.getNumEdit() == 0)
+            undoButton.setDisable(true);
+    }
+
+    @FXML
+    private void viewMap(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("FXMLMappa.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("img/favicon.png"));
+        stage.setOpacity(1);
+        stage.setTitle("Mappa");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.showAndWait();
     }
 }
+

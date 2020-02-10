@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/builder/Tuple.java</file>
-            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/ui/FXMLFirstController.java</file>
-            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/ui/PreventechFX.java</file>
+            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/memento/TupleCollOriginator.java</file>
+            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/command/UndoCommand.java</file>
+            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/memento/TupleCollCaretaker.java</file>
+            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/command/RemoveTuplaCommand.java</file>
+            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/ui/FXMLListController.java</file>
+            <file>file:/C:/Users/Dario/Documents/GitHub/prog3/PreventechFX/src/preventechfx/memento/TupleCollMemento.java</file>
         </group>
     </open-files>
 </project-private>

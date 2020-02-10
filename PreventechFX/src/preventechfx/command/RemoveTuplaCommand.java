@@ -23,12 +23,10 @@ public class RemoveTuplaCommand extends AbstractCommand<Tuple> {
     }
     @Override
     public Optional<Tuple> execute() {
-        
         return null;
     }
     
-    public Optional<Tuple> execute(Tuple tuple) {
+    public void execute(Tuple tuple) {
         tuple.rimuoviDalDB();
-        return null;
     }
 }

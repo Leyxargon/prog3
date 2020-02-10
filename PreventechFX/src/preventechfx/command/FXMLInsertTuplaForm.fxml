@@ -19,27 +19,48 @@
                </font>
             </Label>
             <TextField fx:id="nome" layoutX="129.0" layoutY="37.0" prefHeight="25.0" prefWidth="505.0" />
+            <Label alignment="CENTER" layoutX="309.0" layoutY="81.0" text="INDIRIZZO" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
             <Label layoutX="85.0" layoutY="114.0" text="VIA">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <TextField fx:id="via" layoutX="129.0" layoutY="114.0" prefHeight="25.0" prefWidth="507.0" />
+            <Label layoutX="83.0" layoutY="149.0" text="CAP">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="cap" layoutX="129.0" layoutY="149.0" prefHeight="25.0" prefWidth="56.0" />
+            <Label layoutX="206.0" layoutY="149.0" text="CITTA">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="citta" layoutX="261.0" layoutY="149.0" prefHeight="25.0" prefWidth="229.0" />
+            <Label layoutX="507.0" layoutY="149.0" text="PROVINCIA">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="prov" layoutX="603.0" layoutY="149.0" prefHeight="25.0" prefWidth="33.0" />
             <Label layoutX="46.0" layoutY="265.0" text="LATITUDINE" textAlignment="RIGHT">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <TextField fx:id="latitudine" layoutX="149.0" layoutY="265.0" prefHeight="25.0" prefWidth="149.0" />
-            <TextField id="longitudine" fx:id="longitudine" layoutX="149.0" layoutY="307.0" prefHeight="25.0" prefWidth="149.0" />
             <Label layoutX="30.0" layoutY="307.0" text="LONGITUDINE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="chiusura" layoutX="487.0" layoutY="307.0" prefHeight="25.0" prefWidth="149.0" />
-            <TextField fx:id="apertura" layoutX="487.0" layoutY="265.0" prefHeight="25.0" prefWidth="149.0" />
-            <Label layoutX="392.0" layoutY="307.0" text="CHIUSURA">
+            <TextField id="longitudine" fx:id="longitudine" layoutX="149.0" layoutY="307.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="470.0" layoutY="220.0" text="ORARI">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -49,35 +70,14 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
+            <TextField fx:id="apertura" layoutX="487.0" layoutY="265.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="392.0" layoutY="307.0" text="CHIUSURA">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="chiusura" layoutX="487.0" layoutY="307.0" prefHeight="25.0" prefWidth="149.0" />
             <Label layoutX="60.0" layoutY="220.0" text="COORDINATE GEOGRAFICHE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="470.0" layoutY="220.0" text="ORARI">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="309.0" layoutY="81.0" text="INDIRIZZO" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="cap" layoutX="129.0" layoutY="149.0" prefHeight="25.0" prefWidth="56.0" />
-            <Label layoutX="83.0" layoutY="149.0" text="CAP">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="citta" layoutX="261.0" layoutY="149.0" prefHeight="25.0" prefWidth="229.0" />
-            <Label layoutX="206.0" layoutY="149.0" text="CITTA">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="prov" layoutX="603.0" layoutY="149.0" prefHeight="25.0" prefWidth="33.0" />
-            <Label layoutX="507.0" layoutY="149.0" text="PROVINCIA">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -88,7 +88,7 @@
    <bottom>
       <ButtonBar BorderPane.alignment="CENTER">
          <buttons>
-              <Button fx:id="inviadati" onAction="#insertTupla" onMouseClicked="#pulisciTutto" prefHeight="25.0" prefWidth="100.0" text="INVIA DATI" />
+              <Button fx:id="inviadati" onAction="#insertTupla" onMouseClicked="#pulisciTutto" prefHeight="25.0" prefWidth="100.0" text="INSERISCI DATI" />
          </buttons>
          <padding>
             <Insets bottom="10.0" right="15.0" top="10.0" />
