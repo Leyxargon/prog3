@@ -87,7 +87,6 @@ public class FXMLListController implements Initializable {
         tApertura.setCellValueFactory(new PropertyValueFactory<>("apertura"));
         tChiusura.setCellValueFactory(new PropertyValueFactory<>("chiusura"));
         table.setItems(Prova());
-
     }
     
     public ObservableList<Tuple> Prova(){
