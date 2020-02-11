@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="1092.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preventechfx.ui.FXMLListController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="1092.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preventechfx.ui.FXMLListController">
    <children>
       <BorderPane layoutY="1.0" prefHeight="666.0" prefWidth="1092.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -25,6 +25,7 @@
                   <TableColumn fx:id="tLon" prefWidth="86.0" text="LONGITUDINE" />
                   <TableColumn fx:id="tApertura" prefWidth="117.0" text="APERTURA" />
                   <TableColumn fx:id="tChiusura" prefWidth="92.0" text="CHIUSURA" />
+                  <TableColumn fx:id="tServizio" prefWidth="75.0" text="SERVIZIO" />
               </columns>
             </TableView>
          </center>

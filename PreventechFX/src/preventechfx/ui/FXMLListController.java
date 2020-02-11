@@ -10,6 +10,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,15 +31,18 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.bson.Document;
 import preventechfx.builder.*;
 import preventechfx.command.*;
+import preventechfx.iterator.Iterator;
 import preventechfx.iterator.TupleCollection;
 import preventechfx.memento.Action;
 import preventechfx.memento.TupleCollCaretaker;
 import preventechfx.memento.TupleCollMemento;
 import preventechfx.memento.TupleCollOriginator;
 import preventechfx.singleton.*;
+import preventechfx.state.Context;
 
 /**
  * FXML Controller class
@@ -77,6 +84,8 @@ public class FXMLListController implements Initializable {
     private Button viewMap;
     @FXML
     private Button undoButton;
+    @FXML
+    private TableColumn<Tuple, String> tServizio;
 
     /**
      * Initializes the controller class.
@@ -94,11 +103,14 @@ public class FXMLListController implements Initializable {
         tLon.setCellValueFactory(new PropertyValueFactory<>("lon"));
         tApertura.setCellValueFactory(new PropertyValueFactory<>("apertura"));
         tChiusura.setCellValueFactory(new PropertyValueFactory<>("chiusura"));
+        tServizio.setCellValueFactory(new PropertyValueFactory<>("servizio"));
         tupleCollOriginator = new TupleCollOriginator(loadDB());
         tupleCollMemento = tupleCollOriginator.saveToMemento();
         tupleCollCaretaker = new TupleCollCaretaker();
         tupleCollCaretaker.addMemento(tupleCollMemento);
         table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        tServizio.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getServizio()));
+        
         undoButton.setDisable(true);
     }
     

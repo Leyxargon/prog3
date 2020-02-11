@@ -46,6 +46,7 @@ public class PreventechFX extends Application {
             director.constructFarmaciaTuple(builder, d);
             tuplec.add(builder.getResult());
         }
+        
         for (Iterator iter = tuplec.getIterator(); iter.hasNext();)
             System.out.println(iter.next());*/
         launch(args);

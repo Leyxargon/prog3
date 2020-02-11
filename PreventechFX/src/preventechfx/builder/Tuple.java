@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.bson.Document;
 import preventechfx.singleton.Database;
+import preventechfx.state.Context;
 
 /**
  *
@@ -117,5 +118,10 @@ public class Tuple {
                 this.prov.equals(tuple.prov) &&
                 this.apertura == tuple.apertura &&
                 this.chiusura == tuple.chiusura;
+    }
+    
+    public String getServizio(){
+        Context x = new Context();
+        return x.controlState(this);
     }
 }

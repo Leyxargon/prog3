@@ -43,7 +43,8 @@ public class TupleBuilder implements Builder {
         this.citta = (String) (Object) indirizzo.get(2);
         this.prov = (String) (Object) indirizzo.get(3);
     }
-
+    
+    
     @Override
     public void setOrario(Document document) {
         this.apertura = (double) (Object) document.get("open");

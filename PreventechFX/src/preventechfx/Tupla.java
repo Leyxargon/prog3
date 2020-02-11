@@ -72,7 +72,7 @@ public class Tupla {
             list2 = list2.replace("<strong>", "");
             list2 = list2.replace("</strong>", "");
             list2 = list2.replace("<br>", " ");
-            list2 = list2 + " " + x.controlState((String) o.get("str"), this);
+           // list2 = list2 + " " + x.controlState((String) o.get("str"), this);
             cast.add(list2);
         }
         return cast;
