@@ -18,9 +18,8 @@ public class TupleCollCaretaker {
     
     public TupleCollMemento getMemento() {
         if (!mementos.isEmpty()) {
-            TupleCollMemento tupleCollMemento = mementos.pop();
             --numEdit;
-            return tupleCollMemento;
+            return mementos.pop();
         }
         return null;
     }
@@ -31,8 +30,6 @@ public class TupleCollCaretaker {
     
     public void addMemento(TupleCollMemento memento) {
         mementos.push(memento);
-        System.out.println("Memorizzata azione "+ (memento.getLastAction() == Action.ADD ? "ADD" : (memento.getLastAction() == Action.DEL ? "DEL" : "NULL")));
-        System.out.println("Dimensione stack: "+mementos.size());
         ++numEdit;
     }
 }
