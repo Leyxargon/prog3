@@ -14,7 +14,7 @@ import java.util.Deque;
  */
 public class TupleCollCaretaker {
     final Deque<TupleCollMemento> mementos = new ArrayDeque<>();
-    int numEdit = -1;
+    int numEdit = 0;
     
     public TupleCollMemento getMemento() {
         if (!mementos.isEmpty()) {
@@ -24,13 +24,15 @@ public class TupleCollCaretaker {
         }
         return null;
     }
-    
-    public int getNumEdit() {
-        return numEdit;
+
+    public boolean noEdit() {
+        return numEdit == 0;
     }
     
     public void addMemento(TupleCollMemento memento) {
         mementos.push(memento);
+        System.out.println("Memorizzata azione "+ (memento.getLastAction() == Action.ADD ? "ADD" : (memento.getLastAction() == Action.DEL ? "DEL" : "NULL")));
+        System.out.println("Dimensione stack: "+mementos.size());
         ++numEdit;
     }
 }

@@ -11,14 +11,10 @@ import preventechfx.iterator.TupleCollection;
  *
  * @author Dario
  */
+
 public class TupleCollOriginator {
     private TupleCollection tuples;
     private Action lastAction;
-    
-    public TupleCollOriginator(TupleCollection tuples) {
-        this.tuples = tuples;
-        this.lastAction = Action.NULL;
-    }
 
     public TupleCollection getCollection() {
         return this.tuples;
@@ -31,14 +27,13 @@ public class TupleCollOriginator {
     public void setCollection(TupleCollection tuples) {
         this.tuples = tuples;
     }
-    
+
     public void setLastAction(Action action) {
         this.lastAction = action;
     }
     
     public TupleCollMemento saveToMemento() {
-        TupleCollMemento tupleCollMemento = new TupleCollMemento(this.tuples);
-        return tupleCollMemento;
+        return new TupleCollMemento(this.tuples, this.lastAction);
     }
     
     public void undo(TupleCollMemento memento) {

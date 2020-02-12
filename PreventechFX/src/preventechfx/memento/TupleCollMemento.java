@@ -16,8 +16,9 @@ public class TupleCollMemento {
     private TupleCollection tuples;
     private Action lastAction;
 
-    public TupleCollMemento(TupleCollection tuples) {
+    public TupleCollMemento(TupleCollection tuples, Action lastAction) {
         this.tuples = tuples;
+        this.lastAction = lastAction;
     }
     
     public TupleCollection getCollection() {
