@@ -28,7 +28,7 @@ public class PreventechFX extends Application {
         
         stage.setScene(scene);
         stage.getIcons().add(new Image("img/favicon.png"));
-        stage.setTitle("Preventech");
+        stage.setTitle("PrevenTech");
         stage.show();
         scene.setCursor(DEFAULT);
     }
@@ -37,20 +37,7 @@ public class PreventechFX extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
-        Director director = new Director();
-        TupleBuilder builder = new TupleBuilder();
-        List<Document> document = (List<Document>) Database.getCollection().find().into(new ArrayList<>());
-        TupleCollection tuplec = new TupleCollection();
-        for (Document d : document) {
-            director.constructFarmaciaTuple(builder, d);
-            tuplec.add(builder.getResult());
-        }
-        
-        for (Iterator iter = tuplec.getIterator(); iter.hasNext();)
-            System.out.println(iter.next());*/
         launch(args);
-        
     }
     
 }

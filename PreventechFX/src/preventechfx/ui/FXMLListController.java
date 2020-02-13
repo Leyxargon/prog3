@@ -7,8 +7,6 @@ package preventechfx.ui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -27,14 +25,11 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.bson.Document;
 import preventechfx.builder.*;
 import preventechfx.command.*;
+import preventechfx.facade.Facade;
 import preventechfx.iterator.TupleCollection;
 import preventechfx.memento.Action;
-import preventechfx.memento.TupleCollCaretaker;
-import preventechfx.memento.TupleCollOriginator;
-import preventechfx.singleton.*;
 
 /**
  * FXML Controller class
@@ -42,8 +37,7 @@ import preventechfx.singleton.*;
  * @author mitic
  */
 public class FXMLListController implements Initializable {
-    TupleCollOriginator tupleCollOriginator;
-    TupleCollCaretaker tupleCollCaretaker;
+    Facade instance;
     Stage stage;
     Parent root;
     SubScene sub;
@@ -95,27 +89,11 @@ public class FXMLListController implements Initializable {
         tApertura.setCellValueFactory(new PropertyValueFactory<>("apertura"));
         tChiusura.setCellValueFactory(new PropertyValueFactory<>("chiusura"));
         tServizio.setCellValueFactory(new PropertyValueFactory<>("servizio"));
-        tupleCollOriginator = new TupleCollOriginator();
-        tupleCollOriginator.setCollection(loadDB());
-        tupleCollCaretaker = new TupleCollCaretaker();
-        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        instance = new Facade();
+        table.setItems(generateObservableList(instance.getOriginator().getCollection()));
         tServizio.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getServizio()));
         
         undoButton.setDisable(true);
-    }
-    
-    public TupleCollection loadDB() {
-        Director director = new Director();
-        TupleBuilder builder = new TupleBuilder();
-        List<Document> document = (List<Document>) Database.getCollection().find().into(new ArrayList<>());
-        TupleCollection tuples = new TupleCollection();
-
-        for (Document d : document) {
-            director.constructTupleFromDocument(builder, d);
-            tuples.add(builder.getResult());
-        }
-        
-        return tuples;
     }
     
     public ObservableList<Tuple> generateObservableList(TupleCollection tuples){
@@ -124,19 +102,19 @@ public class FXMLListController implements Initializable {
     
     @FXML
     private void aggiungiSegnaposto(MouseEvent event) throws IOException {
-        tupleCollOriginator.setLastAction(Action.ADD);
-        tupleCollCaretaker.addMemento(tupleCollOriginator.saveToMemento());
+        instance.getOriginator().setLastAction(Action.ADD);
+        instance.getCaretaker().addMemento(instance.getOriginator().saveToMemento());
         new InsertTuplaCommand().execute();
-        tupleCollOriginator.setCollection(loadDB());
-        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        instance.getOriginator().setCollection(Facade.loadDB());
+        table.setItems(generateObservableList(instance.getOriginator().getCollection()));
         if (undoButton.isDisabled())
             undoButton.setDisable(false);
     }
     
     @FXML
     private void rimuoviSegnaposto(MouseEvent event) throws IOException {
-        tupleCollOriginator.setLastAction(Action.DEL);
-        tupleCollCaretaker.addMemento(tupleCollOriginator.saveToMemento());
+        instance.getOriginator().setLastAction(Action.DEL);
+        instance.getCaretaker().addMemento(instance.getOriginator().saveToMemento());
         Director director = new Director();
         TupleBuilder builder = new TupleBuilder();
         String nome = table.getSelectionModel().getSelectedItem().getNome();
@@ -150,17 +128,17 @@ public class FXMLListController implements Initializable {
         double chiusura = table.getSelectionModel().getSelectedItem().getChiusura();
         director.constructTupleFromData(builder, nome, lat, lon, via, cap, citta, prov, apertura, chiusura);
         new RemoveTuplaCommand().execute(builder.getResult());
-        tupleCollOriginator.setCollection(loadDB());
-        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
+        instance.getOriginator().setCollection(Facade.loadDB());
+        table.setItems(generateObservableList(instance.getOriginator().getCollection()));
         if (undoButton.isDisabled())
             undoButton.setDisable(false);
     }
     
     @FXML
     private void annullaOperazione(MouseEvent event) throws IOException {
-        new UndoCommand().execute(tupleCollOriginator, tupleCollCaretaker);
-        table.setItems(generateObservableList(tupleCollOriginator.getCollection()));
-        if (tupleCollCaretaker.noEdit())
+        new UndoCommand().execute(instance.getOriginator(), instance.getCaretaker());
+        table.setItems(generateObservableList(instance.getOriginator().getCollection()));
+        if (instance.getCaretaker().noEdit())
             undoButton.setDisable(true);
     }
 
