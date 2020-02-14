@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package preventechfx.builder;
 
 import java.util.ArrayList;
@@ -13,8 +8,11 @@ import preventechfx.singleton.Database;
 import preventechfx.state.Context;
 
 /**
- *
- * @author Dario
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
+ */
+
+/**
+ * Contiene le informazioni inerenti ad una farmacia.
  */
 public class Tuple {
     private String nome;
@@ -27,6 +25,18 @@ public class Tuple {
     private double apertura;
     private double chiusura;
     
+    /**
+     * Costuisce una tupla a partire da singoli dati.
+     * @param nome
+     * @param lat
+     * @param lon
+     * @param via
+     * @param cap
+     * @param citta
+     * @param prov
+     * @param apertura
+     * @param chiusura 
+     */
     public Tuple(String nome, double lat, double lon, String via, String cap, String citta, String prov, double apertura, double chiusura) {
         this.nome = nome;
         this.lat = lat;
@@ -75,16 +85,26 @@ public class Tuple {
         return chiusura;
     }
     
+    /**
+     * Inserisce la tupla nel database.
+     */
     public void inserisciInDB() {
         if (!this.isInDB())
             Database.getCollection().insertOne(this.asDocument());
     }
     
+    /**
+     * Rimuove la tupla dal database.
+     */
     public void rimuoviDalDB() {
         if (this.isInDB())
             Database.getCollection().deleteOne(this.asDocument());
     }
     
+    /**
+     * Verifica se una copia della tupla è presente nel database remoto.
+     * @return  true se è presente, false se è assente
+     */
     public boolean isInDB() {
         List<Document> collection = (List<Document>) Database.getCollection().find().into(new ArrayList<>());
         Director director = new Director();
@@ -97,6 +117,10 @@ public class Tuple {
         return false;
     }
     
+    /**
+     * Genera un oggetto di tipo Document contenente i dati della tupla.
+     * @return  oggetto Document contenente i dati della tupla
+     */
     public Document asDocument() {
         Document document = new Document();
         document.append("pos", Arrays.asList(lat, lon));
@@ -108,6 +132,11 @@ public class Tuple {
         return document;
     }
     
+    /**
+     * Confronta due tuple.
+     * @param   tuple   tupla da confrontare
+     * @return  true se le due tuple sono uguali, false se non sono uguali
+     */
     public boolean equals(Tuple tuple) {
         return this.nome.equals(tuple.nome) &&
                 this.lat == tuple.lat &&
@@ -120,6 +149,10 @@ public class Tuple {
                 this.chiusura == tuple.chiusura;
     }
     
+    /**
+     * Verifica se la farmacia sia aperta o chiusa.
+     * @return  stato del servizio
+     */
     public String getServizio(){
         Context x = new Context();
         return x.controlState(this);

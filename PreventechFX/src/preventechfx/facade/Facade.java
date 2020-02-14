@@ -1,4 +1,3 @@
-
 package preventechfx.facade;
 
 import java.util.ArrayList;
@@ -18,17 +17,17 @@ import preventechfx.singleton.Database;
 
 
 /**
- * Facade è un Design Pattern che viene utilizzato dal Main per utilizzare tutte
- * le funzioni senza instanziare tutti gli oggetti che servono per utilizzare
- * tali metodi.
-*/
+ * Classe di facciata usata per accedere alle funzioni senza instanziare
+ * manualmente tutti gli oggetti necessari.
+ */
 public class Facade {
     TupleCollOriginator originator;
     TupleCollCaretaker caretaker;
     
     /**
-     * Il costruttore di Facade instanzia tutte gli Oggetti necessari per 
-     * l'utilizzo dei metodi che serviranno al main.
+     * Istanzia tutti gli oggetti necessari per l'interazione con le
+     * tuple. Fornisce un punto di accesso ad una collezione di tuple mantenuta
+     * da un custode che può creare snapshot della collezione.
      */
     public Facade() {
         originator = new TupleCollOriginator();
@@ -37,9 +36,9 @@ public class Facade {
     }
     
     /**
-     * loadDb è un metono che tramite connessione al database "copia" tutte le 
-     * tuple di quest'ultimo in un oggetto di tipo TupleCollection. 
-     * @return tuples
+     * Metodo che recupera tutte le tuple dal database e le copia in
+     * un oggetto di tipo TupleCollection. 
+     * @return  tuples   collezione di tuple del database
     */
     public static TupleCollection loadDB() {
         Director director = new Director();

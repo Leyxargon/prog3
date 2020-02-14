@@ -9,8 +9,8 @@ package preventechfx.state;
  */
 
 /**
- * In questa interfaccia viene dichiarato un solo Metodo che verra implementato
- * dalle classi che implementeranno tale interfaccia.
+ * Viene dichiarato un solo metodo definito successivamente
+ * dalle classi che ne implementano l'interfaccia.
 */
 public interface State {
     

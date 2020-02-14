@@ -7,10 +7,9 @@ import preventechfx.builder.*;
 
 
 /**
- * Definiamo l’interfaccia dell’Iteratore che prevede i metodi di interrogazione 
- * hasNext() ed il puntatore all’elemento successivo next().
+ * Prevede i metodi hasNext() e next().
  */
 public interface Iterator {
     public boolean hasNext();
-    Tuple next();
+    public Tuple next();
 }

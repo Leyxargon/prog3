@@ -1,8 +1,3 @@
-/**
- * Context è la classe che istanzia un oggetto di tipo State e in base a
- * determinate circostanza setta lo "Stato".
- * Segue Implementazione.
- */
 package preventechfx.state;
 
 /**

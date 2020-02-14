@@ -1,7 +1,3 @@
-/**
- * Classe Open, implementa l'interfaccia State.
- * Segue Implementazione.
- */
 package preventechfx.state;
 
 /**
@@ -11,9 +7,9 @@ package preventechfx.state;
 
 
 /**
- * La classe Open implementa il metodo DoAction dell'interfaccia State e setta
- * lo stato ad "Aperto".
-*/
+ * Implementa il metodo DoAction dell'interfaccia State e setta lo
+ * stato ad "Aperto".
+ */
 public class Open implements State {
 
     @Override

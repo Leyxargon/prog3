@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package preventechfx.command;
 
 import java.io.IOException;
@@ -21,8 +16,12 @@ import javafx.stage.Stage;
 import preventechfx.builder.*;
 
 /**
- * Questa classe si occupa di aprire un form che prenderà in input da tastiera i
- * parametri che andranno poi a generare la Tupla vera e propria.
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
+ */
+
+/**
+ * Apre un form che legge in input da tastiera i parametri necessari 
+ * alla creazione di una tupla.
  * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
 public class FXMLInsertTuplaFormController implements Initializable {
@@ -58,14 +57,12 @@ public class FXMLInsertTuplaFormController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
     
     /**
-     * 
-     * @param event(Parametro che prende in input il click del mouse)
-     * Questo metodo è collegato al pulsante per l'invio dei dati, che quindi ,
-     * attraverso il director genererà una tupla a partire dai singoli dati.
+     * Metodo collegato al pulsante per l'invio dei dati, che quindi
+     * attraverso il director genera una tupla a partire dai singoli dati.
+     * @param   event   parametro che prende in input il click del mouse
      */
     @FXML
     private void insertTupla(ActionEvent event) throws IOException {
@@ -76,9 +73,9 @@ public class FXMLInsertTuplaFormController implements Initializable {
     }
 
     /**
-     * Questo evento è anch'esso collegato all'invio dei dati, e permette
-     * di pulire i campi successivamente al click.
-     * @param event 
+     * Questo evento è anch'esso collegato all'invio dei dati e pulisce
+     * i campi successivamente al click.
+     * @param   event   parametro che prende in input il click del mouse
      */
     @FXML
     private void pulisciTutto(MouseEvent event) {

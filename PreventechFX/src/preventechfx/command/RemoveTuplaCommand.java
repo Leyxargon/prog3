@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package preventechfx.command;
 
 import java.util.Optional;
@@ -10,8 +5,11 @@ import javafx.stage.Window;
 import preventechfx.builder.Tuple;
 
 /**
- * Questa classe viene richiamata alla richiesta dell'utente di eliminare una tupla.
  * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
+ */
+
+/**
+ * Comando di eliminazione di una tupla.
  */
 public class RemoveTuplaCommand extends AbstractCommand<Tuple> {
     public RemoveTuplaCommand() {
@@ -26,9 +24,8 @@ public class RemoveTuplaCommand extends AbstractCommand<Tuple> {
         return null;
     }
     /**
-     * Essa prende in ingresso una tupla selezionata e la passa alla funzione di
-     * rimozione della classe "Tuple".
-     * @param tuple 
+     * Esegue il comando di riferimento, rimuove una tupla dal database.
+     * @param   tuple   tupla da rimuovere dal database remoto
      */
     public void execute(Tuple tuple) {
         tuple.rimuoviDalDB();

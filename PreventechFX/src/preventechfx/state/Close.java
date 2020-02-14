@@ -1,7 +1,3 @@
-/**
- * Classe Close, implementa l'interfaccia State.
- * Segue Implementazione.
- */
 package preventechfx.state;
 
 /**
@@ -10,9 +6,9 @@ package preventechfx.state;
  */
 
 /**
- * La classe Close implementa il metodo DoAction dell'interfaccia State e setta
- * lo stato a "Chiuso".
-*/
+ * Implementa il metodo DoAction dell'interfaccia State e setta lo 
+ * stato a "Chiuso".
+ */
 public class Close implements State {
     @Override
     public String doAction() {

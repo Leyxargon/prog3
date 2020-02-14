@@ -6,7 +6,7 @@ package preventechfx.iterator;
  */
 
 /**
- * L'interfaccia Aggregator definisce l’Iteratore
+ * Definisce l’iteratore.
  */
 public interface Aggregate {
     public Iterator getIterator();

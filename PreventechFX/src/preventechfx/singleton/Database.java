@@ -12,7 +12,7 @@ import com.mongodb.client.MongoDatabase;
 
 
 /**
- * La classe Database implementa la connessione con il Database.
+ * La classe Database implementa la connessione con il database.
  */
 public class Database {
     private static Database instance = null;
@@ -21,7 +21,7 @@ public class Database {
     final private static MongoCollection COLLECTION = DB.getCollection("prog3");
 
     /**
-     * Database() effettua una connessione e ne riporta lo stato.
+     * Effettua una connessione e ne riporta lo stato.
      * 
      */
     private Database() {
@@ -29,9 +29,9 @@ public class Database {
     }
     
     /**
-     * getInstance() non è altro che un pattern Singleton per verificare se
-     * esiste già un instanza (connesione al Database)
-     * @return instance (instanza della connessione al DB)
+     * Restituisce l'istanza del database se è già istanziato, altrimenti
+     * la istanzia e apre una connessione col database.
+     * @return  instance    istanza della connessione al database
      */
     public static Database getInstance() {
         if (instance == null)
@@ -40,24 +40,24 @@ public class Database {
     }
 
     /**
-     * getMongoClient() restituisce il contenuto dell'oggetto MONGOCLIENT
-     * @return MONGOCLIENT
+     * Restituisce il contenuto dell'oggetto di tipo MongoClient.
+     * @return  oggetto di tipo MongoClient
      */
     public static MongoClient getMongoClient() {
         return MONGOCLIENT;
     }
 
      /**
-     * getDB() restituisce il contenuto dell'oggetto MongoDatabase
-     * @return DB
+     * Restituisce il contenuto dell'oggetto di tipo MongoDatabase.
+     * @return  oggetto di tipo MongoDatabase
      */
     public static MongoDatabase getDb() {
         return DB;
     }
 
      /**
-     * getCollection() restituisce il contenuto dell'oggetto Collection
-     * @return COLLECTION
+     * Restituisce il contenuto dell'oggetto di tipo MongoCollection.
+     * @return  oggetto di tipo MongoCollection
      */
     public static MongoCollection getCollection() {
         return COLLECTION;

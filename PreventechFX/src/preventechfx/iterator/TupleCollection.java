@@ -8,8 +8,8 @@ import java.util.List;
  * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
 /**
- * la classe TupleCollection implementa la struttura dati. In questo caso
- * creiamo un ArrayList di Tuple in modo da farci ritornare una lista di Tuple.
+ * Implementa la collezione di tuple. Crea un ArrayList di Tuple in modo
+ * da far ritornare una lista di Tuple.
  */
 public class TupleCollection implements Aggregate {
 
@@ -25,19 +25,18 @@ public class TupleCollection implements Aggregate {
     }
 
     /**
-     * Utilizzando le inner Class implementiamo anche la classe TupleIterator
-     * che implementa Iterator, in questo caso non fa altro che scorrere
-     * l'ArrayList e prendere i prossimi elementi nell'ArrayList
+     * Implementa Iterator, usato per scorrere l'ArrayList 
+     * e prendere gli elementi nell'ArrayList.
      */
     private class TupleIterator implements Iterator {
 
-        int i;
+        private int i;
 
         /**
-         * Verifica se quell'indice è minore dell'Arraylist.size in tal caso
-         * vuol dire che che non è l'ultimo.
+         * Verifica se quell'indice è minore della dimensione della
+         * TupleCollection, in tal caso vuol dire che che non è l'ultimo.
          *
-         * @return i<tuples.size();
+         * @return  true se non è l'ultimo elemento, false se è l'ultimo
          */
         @Override
         public boolean hasNext() {
@@ -45,9 +44,9 @@ public class TupleCollection implements Aggregate {
         }
 
         /**
-         * Prende il prossimo elemento nell'ArrayList
+         * Prende il prossimo elemento nella TupleCollection.
          *
-         * @return tuples.get(i++)
+         * @return  il successivo elemento della TupleCollection
          */
         @Override
         public Tuple next() {
@@ -61,7 +60,7 @@ public class TupleCollection implements Aggregate {
     /**
      * Permette di aggiungere un oggetto in Tuple.
      *
-     * @param object (Tuple)
+     * @param   object  tupla da inserire nella TupleCollection
      */
     public void add(Tuple object) {
         this.tuples.add(object);

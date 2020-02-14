@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package preventechfx.command;
 
 import java.util.Optional;
 import javafx.stage.Window;
 import preventechfx.builder.Tuple;
 import preventechfx.iterator.Iterator;
-import preventechfx.memento.Action;
 import preventechfx.memento.TupleCollCaretaker;
 import preventechfx.memento.TupleCollOriginator;
 
 /**
- * Questa classe si occupa di interfacciarsi con la classe Memento per annullare 
- * l'ultima operazione effettuata e ritornare all'ultimo stato del DB.
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
+ */
+
+/**
+ * Annulla l'ultima operazione effettuata e ritorna all'ultimo stato del DB.
  * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
 public class UndoCommand extends AbstractCommand<Tuple> {
@@ -28,11 +25,10 @@ public class UndoCommand extends AbstractCommand<Tuple> {
     }
     
     /**
-     * l'execute opera a partire da uno switch case per definire se bisogna 
-     * aggiungere o rimuovere una tupla dal DB, prendendo le informazioni dai 
-     * due parametri in ingresso.
-     * @param tupleCollOriginator
-     * @param tupleCollCaretaker 
+     * Esegue il comando di annullamento dell'ultima operazione. Legge
+     * l'ultima operazione effettuata e ne annulla l'applicazione.
+     * @param   tupleCollOriginator collezione di tuple originaria
+     * @param   tupleCollCaretaker  custode che gestisce gli snapshot
      */
     public void execute(TupleCollOriginator tupleCollOriginator, TupleCollCaretaker tupleCollCaretaker) {
         switch(tupleCollOriginator.getLastAction()) {

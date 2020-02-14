@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package preventechfx.command;
 
 import javafx.stage.Window;
 
 /**
- *
- * @author Dario
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
+ */
+
+/**
+ * Definisce i comportamenti base dell'interazione con l'interfaccia
+ * grafica.
+ * @param   <R> tipo di dato generico
  */
 public abstract class AbstractCommand<R> implements Command<R> {
     Window window;
