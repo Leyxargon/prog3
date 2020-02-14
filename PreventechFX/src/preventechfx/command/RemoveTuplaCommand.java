@@ -10,8 +10,8 @@ import javafx.stage.Window;
 import preventechfx.builder.Tuple;
 
 /**
- *
- * @author Dario
+ * Questa classe viene richiamata alla richiesta dell'utente di eliminare una tupla.
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
 public class RemoveTuplaCommand extends AbstractCommand<Tuple> {
     public RemoveTuplaCommand() {
@@ -25,7 +25,11 @@ public class RemoveTuplaCommand extends AbstractCommand<Tuple> {
     public Optional<Tuple> execute() {
         return null;
     }
-    
+    /**
+     * Essa prende in ingresso una tupla selezionata e la passa alla funzione di
+     * rimozione della classe "Tuple".
+     * @param tuple 
+     */
     public void execute(Tuple tuple) {
         tuple.rimuoviDalDB();
     }

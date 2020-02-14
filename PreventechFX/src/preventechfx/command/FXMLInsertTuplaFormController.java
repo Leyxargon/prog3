@@ -21,8 +21,9 @@ import javafx.stage.Stage;
 import preventechfx.builder.*;
 
 /**
- *
- * @author info
+ * Questa classe si occupa di aprire un form che prenderà in input da tastiera i
+ * parametri che andranno poi a generare la Tupla vera e propria.
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
 public class FXMLInsertTuplaFormController implements Initializable {
     private Label label;
@@ -60,6 +61,12 @@ public class FXMLInsertTuplaFormController implements Initializable {
         // TODO
     }
     
+    /**
+     * 
+     * @param event(Parametro che prende in input il click del mouse)
+     * Questo metodo è collegato al pulsante per l'invio dei dati, che quindi ,
+     * attraverso il director genererà una tupla a partire dai singoli dati.
+     */
     @FXML
     private void insertTupla(ActionEvent event) throws IOException {
         Director director = new Director();
@@ -68,6 +75,11 @@ public class FXMLInsertTuplaFormController implements Initializable {
         builder.getResult().inserisciInDB();
     }
 
+    /**
+     * Questo evento è anch'esso collegato all'invio dei dati, e permette
+     * di pulire i campi successivamente al click.
+     * @param event 
+     */
     @FXML
     private void pulisciTutto(MouseEvent event) {
         nome.clear();

@@ -17,10 +17,10 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 /**
- *
- * @author Dario
+ *Questa classe viene richiamata alla richiesta da parte dell'utente di inserire
+ * una tupla.
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
-
 
 public class InsertTuplaCommand extends AbstractCommand<Boolean> {
     public InsertTuplaCommand() {
@@ -31,6 +31,9 @@ public class InsertTuplaCommand extends AbstractCommand<Boolean> {
         super(window);
     }
 
+    /**
+     * Questo execute va a cambiare la scena aprendo il form di inserimento tupla.
+     */
     @Override
     public Optional<Boolean> execute() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLInsertTuplaForm.fxml"));

@@ -14,8 +14,9 @@ import preventechfx.memento.TupleCollCaretaker;
 import preventechfx.memento.TupleCollOriginator;
 
 /**
- *
- * @author Dario
+ * Questa classe si occupa di interfacciarsi con la classe Memento per annullare 
+ * l'ultima operazione effettuata e ritornare all'ultimo stato del DB.
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
 public class UndoCommand extends AbstractCommand<Tuple> {
     public UndoCommand() {
@@ -25,6 +26,14 @@ public class UndoCommand extends AbstractCommand<Tuple> {
     public UndoCommand(Window window) {
         super(window);
     }
+    
+    /**
+     * l'execute opera a partire da uno switch case per definire se bisogna 
+     * aggiungere o rimuovere una tupla dal DB, prendendo le informazioni dai 
+     * due parametri in ingresso.
+     * @param tupleCollOriginator
+     * @param tupleCollCaretaker 
+     */
     public void execute(TupleCollOriginator tupleCollOriginator, TupleCollCaretaker tupleCollCaretaker) {
         switch(tupleCollOriginator.getLastAction()) {
             case ADD:
