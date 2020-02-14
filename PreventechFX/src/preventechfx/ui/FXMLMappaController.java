@@ -24,6 +24,8 @@ public class FXMLMappaController implements Initializable {
     private WebView map;
 
     /**
+     * @param url
+     * @param rb
      * Questo metodo permette di aprire nella nostra webWiew la mappa generata dalla servlet 
      * visualizzata anche dalla webApp sviluppata nel progetto di Tecnologie Web
      */

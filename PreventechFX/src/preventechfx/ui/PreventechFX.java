@@ -20,6 +20,7 @@ import javafx.stage.Stage;
  */
 public class PreventechFX extends Application {
    /**
+    * @param stage
     * Questo metodo inizializza la nostra JavaFx definendo la pagina iniziale e le varie impostazioni grafiche,
     * quali l'icona e il logo.
     */ 

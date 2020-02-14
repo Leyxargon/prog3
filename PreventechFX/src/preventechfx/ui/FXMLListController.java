@@ -73,6 +73,8 @@ public class FXMLListController implements Initializable {
     private TableColumn<Tuple, String> tServizio;
 
     /**
+     * @param url
+     * @param rb
      * Attraverso il metodo initialize andiamo a valorizzare i campi della nostra tableView, definendo l'elemento della tupla che ogni colonna contiene.
      * Infine con il setItems, passandogli il metodo generateObservavleList, prendiamo i valori dal DB e generiamo la nostra Tabella.
      */
@@ -105,6 +107,7 @@ public class FXMLListController implements Initializable {
     
     
    /**
+    * @param event(Parametro che prende in input il click del mouse)
     *La funzione "aggiungiSegnaposto" permette di creare una tupla all interno del nostro DB.
     *Essa opera attraverso un istanza della classe Facade che ritorna un oggetto di tipo TupleCollOriginator e allo stesso tempo,
     *lo imposta come ultima operazione effettuata, successivamente con il getCaretaker.addMemento designa questa operazione come ultimo stato
@@ -126,7 +129,8 @@ public class FXMLListController implements Initializable {
     
 
 
-        /**
+    /**
+     *  @param event (Parametro che prende in input il click del mouse)
      *rimuoviSegnaposto opera nella maniera inversa dell inserisci, come primo passo registra nel Memento ,come visto in precedenza,
      *tale operazione che potrà essere annullata successivamente.
      *Effettuando una selezione attraverso la tabella verranno salvati tutti i campi di una tupla, che verranno passati ad un construttore di Tuple
@@ -157,10 +161,9 @@ public class FXMLListController implements Initializable {
     }
     
     /**
+     * @param event (Parametro che prende in input il click del mouse)
      * Questo metodo ci permette di annullare, attraverso il metodo "execute" dalla classe UndoCommand, l'ultima operazione effettuata 
      * attraverso i get delle classi TupleCollOriginator e TupleCollCaretaker.
-     * @param event
-     * @throws IOException 
      */
     @FXML
     private void annullaOperazione(MouseEvent event) throws IOException {
@@ -172,6 +175,7 @@ public class FXMLListController implements Initializable {
     
     
   /**
+    * @param event (Parametro che prende in input il click del mouse)
     * Attraverso la funzione "viewMap" riusciamo ad aprire un nuovo Stage settando come root il nostro FXMLMappa contenente una webView
     *che ci permetterà di controllare le nostre modifiche apportate alla mappa, 
     *e quindi al corretto inserimento o cancellazione di una tupla.
