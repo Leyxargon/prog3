@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Interfaccia State.
  */
 package preventechfx.state;
 
 /**
  *
- * @author info
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
+
+/**
+ * In questa interfaccia viene dichiarato un solo Metodo che verra implementato
+ * dalle classi che implementeranno tale interfaccia.
+*/
 public interface State {
     
     public String doAction();

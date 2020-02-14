@@ -1,34 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Context è la classe che istanzia un oggetto di tipo State e in base a
+ * determinate circostanza setta lo "Stato".
+ * Segue Implementazione.
  */
 package preventechfx.state;
 
+/**
+* Importiamo i package per il builder in modo da avere in input una tupla;
+* Importiamo LocalDateTime in modo da avere in ogni momento l'orario locale.
+*/
 import java.time.LocalDateTime;
 import preventechfx.builder.Tuple;
 /**
  *
- * @author info
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
+ */
+
+/**
+ * Context è la classe che istanzia un oggetto di tipo State e in base a
+ * determinate circostanza setta lo "Stato".
  */
 public class Context {
-
-   /*public String controlState(String nome_negozio, Tupla open) {
-        LocalDateTime now = LocalDateTime.now();
-        Double timeopen, timeclose;
-        State openState = new Open();
-        State closeState = new Close();
-        String state = null;
-        timeopen = open.trovaOrario(nome_negozio);
-        timeclose = open.orarioChiusura(nome_negozio);
-        String prova = now.getHour() + "." + now.getMinute();
-        double d = Double.parseDouble(prova);
-        if (d > timeclose || d < timeopen) {
-            return closeState.doAction();
-        } else {
-            return openState.doAction();
-        }
-    }*/
+    
+    /**
+     * Control State è una funzione che in base all'orario effettua una
+     * comparazione con le variabili Apertura e Chiusura di una Tuple e
+     * ritorna lo stato (Aperto/a o Chiuso/a) della Farmacia o Distributore. 
+     * @param input Tuple
+     * @return Close || Open
+    */
     
     public String controlState(Tuple input){
        LocalDateTime now = LocalDateTime.now();

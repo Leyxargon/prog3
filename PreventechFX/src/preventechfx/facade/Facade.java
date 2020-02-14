@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package preventechfx.facade;
 
 import java.util.ArrayList;
@@ -17,18 +13,34 @@ import preventechfx.singleton.Database;
 
 /**
  *
- * @author Dario
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
+
+
+/**
+ * Facade è un Design Pattern che viene utilizzato dal Main per utilizzare tutte
+ * le funzioni senza instanziare tutti gli oggetti che servono per utilizzare
+ * tali metodi.
+*/
 public class Facade {
     TupleCollOriginator originator;
     TupleCollCaretaker caretaker;
     
+    /**
+     * Il costruttore di Facade instanzia tutte gli Oggetti necessari per 
+     * l'utilizzo dei metodi che serviranno al main.
+     */
     public Facade() {
         originator = new TupleCollOriginator();
         originator.setCollection(loadDB());
         caretaker = new TupleCollCaretaker();
     }
     
+    /**
+     * loadDb è un metono che tramite connessione al database "copia" tutte le 
+     * tuple di quest'ultimo in un oggetto di tipo TupleCollection. 
+     * @return tuples
+    */
     public static TupleCollection loadDB() {
         Director director = new Director();
         TupleBuilder builder = new TupleBuilder();

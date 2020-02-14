@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package preventechfx.iterator;
 
 import preventechfx.builder.*;
 /**
- *
- * @author Dario
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
+ */
+
+
+/**
+ * Definiamo l’interfaccia dell’Iteratore che prevede i metodi di interrogazione 
+ * hasNext() ed il puntatore all’elemento successivo next().
  */
 public interface Iterator {
     public boolean hasNext();

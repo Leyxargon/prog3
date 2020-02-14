@@ -1,14 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe Open, implementa l'interfaccia State.
+ * Segue Implementazione.
  */
 package preventechfx.state;
 
 /**
  *
- * @author mitic
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
+
+
+/**
+ * La classe Open implementa il metodo DoAction dell'interfaccia State e setta
+ * lo stato ad "Aperto".
+*/
 public class Open implements State {
 
     @Override

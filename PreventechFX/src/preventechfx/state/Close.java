@@ -1,17 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe Close, implementa l'interfaccia State.
+ * Segue Implementazione.
  */
 package preventechfx.state;
 
 /**
  *
- * @author mitic
+ * @author Attanasio Raffaele, Musella Dario, Venuso Raffaele
  */
-public class Close implements State {
-   
 
+/**
+ * La classe Close implementa il metodo DoAction dell'interfaccia State e setta
+ * lo stato a "Chiuso".
+*/
+public class Close implements State {
     @Override
     public String doAction() {
         return "Chiuso";
