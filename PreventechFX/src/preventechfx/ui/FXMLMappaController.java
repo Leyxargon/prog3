@@ -24,7 +24,8 @@ public class FXMLMappaController implements Initializable {
     private WebView map;
 
     /**
-     * Initializes the controller class.
+     * Questo metodo permette di aprire nella nostra webWiew la mappa generata dalla servlet 
+     * visualizzata anche dalla webApp sviluppata nel progetto di Tecnologie Web
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -34,7 +34,7 @@ import preventechfx.memento.Action;
 /**
  * FXML Controller class
  *
- * @author mitic
+ * @author Attanasio Raffaele  Musella Dario  Venuso Raffaele
  */
 public class FXMLListController implements Initializable {
     Facade instance;
@@ -73,9 +73,8 @@ public class FXMLListController implements Initializable {
     private TableColumn<Tuple, String> tServizio;
 
     /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
+     * Attraverso il metodo initialize andiamo a valorizzare i campi della nostra tableView, definendo l'elemento della tupla che ogni colonna contiene.
+     * Infine con il setItems, passandogli il metodo generateObservavleList, prendiamo i valori dal DB e generiamo la nostra Tabella.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,10 +95,23 @@ public class FXMLListController implements Initializable {
         undoButton.setDisable(true);
     }
     
+    /**
+     *Attraverso questa funzione passando in input un oggetto TupleCollection la classe FXCollection genera attraverso il metodo
+     *observableList una lista di Tuple che poi verrà utilizzata dagli altri metodi per la visualizzazione della stessa.
+     */
     public ObservableList<Tuple> generateObservableList(TupleCollection tuples){
         return FXCollections.observableList(tuples.getCollection());
     }
     
+    
+   /**
+    *La funzione "aggiungiSegnaposto" permette di creare una tupla all interno del nostro DB.
+    *Essa opera attraverso un istanza della classe Facade che ritorna un oggetto di tipo TupleCollOriginator e allo stesso tempo,
+    *lo imposta come ultima operazione effettuata, successivamente con il getCaretaker.addMemento designa questa operazione come ultimo stato
+    *che potra poi essere ripristinato dal Memento.
+    *Successivamente con il metodo "execute" della classe "InsertTuplaCommand" la tupla creata viene inserita definitivamente nel DB.
+    *Infine attraverso il setItems fa un refresh della tabella aggiungendo anche la tupla appena inserita.
+    */
     @FXML
     private void aggiungiSegnaposto(MouseEvent event) throws IOException {
         instance.getOriginator().setLastAction(Action.ADD);
@@ -111,6 +123,16 @@ public class FXMLListController implements Initializable {
             undoButton.setDisable(false);
     }
     
+    
+
+
+        /**
+     *rimuoviSegnaposto opera nella maniera inversa dell inserisci, come primo passo registra nel Memento ,come visto in precedenza,
+     *tale operazione che potrà essere annullata successivamente.
+     *Effettuando una selezione attraverso la tabella verranno salvati tutti i campi di una tupla, che verranno passati ad un construttore di Tuple
+     *ed il risultato viene passato al metodo "execute" della classe RemoveTuplaCommand che si occuperà di eliminare la tupla dal DB.
+     *Infine come in precedenza verrà effettuato il refresh della tabella per mostrare la stessa aggiornata.
+     */
     @FXML
     private void rimuoviSegnaposto(MouseEvent event) throws IOException {
         instance.getOriginator().setLastAction(Action.DEL);
@@ -134,6 +156,12 @@ public class FXMLListController implements Initializable {
             undoButton.setDisable(false);
     }
     
+    /**
+     * Questo metodo ci permette di annullare, attraverso il metodo "execute" dalla classe UndoCommand, l'ultima operazione effettuata 
+     * attraverso i get delle classi TupleCollOriginator e TupleCollCaretaker.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void annullaOperazione(MouseEvent event) throws IOException {
         new UndoCommand().execute(instance.getOriginator(), instance.getCaretaker());
@@ -141,7 +169,13 @@ public class FXMLListController implements Initializable {
         if (instance.getCaretaker().noEdit())
             undoButton.setDisable(true);
     }
-
+    
+    
+  /**
+    * Attraverso la funzione "viewMap" riusciamo ad aprire un nuovo Stage settando come root il nostro FXMLMappa contenente una webView
+    *che ci permetterà di controllare le nostre modifiche apportate alla mappa, 
+    *e quindi al corretto inserimento o cancellazione di una tupla.
+    */
     @FXML
     private void viewMap(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("FXMLMappa.fxml"));

@@ -19,7 +19,10 @@ import javafx.stage.Stage;
  * @author info
  */
 public class PreventechFX extends Application {
-    
+   /**
+    * Questo metodo inizializza la nostra JavaFx definendo la pagina iniziale e le varie impostazioni grafiche,
+    * quali l'icona e il logo.
+    */ 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLList.fxml"));
