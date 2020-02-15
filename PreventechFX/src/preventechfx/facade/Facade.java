@@ -17,7 +17,7 @@ import preventechfx.singleton.Database;
 
 
 /**
- * Classe di facciata usata per accedere alle funzioni senza instanziare
+ * Classe di facciata usata per accedere alle funzioni senza istanziare
  * manualmente tutti gli oggetti necessari.
  */
 public class Facade {
