@@ -12,8 +12,8 @@ import java.util.Deque;
  * della TupleCollection.
  */
 public class TupleCollCaretaker {
-    final Deque<TupleCollMemento> mementos = new ArrayDeque<>();
-    int numEdit = 0;
+    final private Deque<TupleCollMemento> mementos = new ArrayDeque<>();
+    private int numEdit = 0;
     
     /**
      * Retituisce l'ultimo stato della TupleCollection.
