@@ -20,10 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 
-/**
- *
- * @author Paola Venuso
- */
 public class MapServlet extends HttpServlet {
 
     /**
