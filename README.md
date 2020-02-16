@@ -1,2 +1,2 @@
-# Progetto Programmazione III
-Progetto per l'esame di Programmazione III, Università degli Studi di Napoli "Parthenope"
+# prevenTechFX
+prevenTechFX è un applicativo back-office che consente di gestire i segnaposti del sito web prevenTech.
